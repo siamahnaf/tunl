@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>{{name}} · {{title}}</title>
+<style>
+  :root { --bg: #f6f5fb; --card: #fff; --ink: #17131f; --muted: #6c6679; --line: #ebe8f2; color-scheme: light; }
+  @media (prefers-color-scheme: dark) { :root { --bg: #0f0d14; --card: #18151f; --ink: #f5f3fa; --muted: #a39db1; --line: #2a2634; color-scheme: dark; } }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    display: grid; place-items: center; padding: 24px; color: var(--ink);
+    font: 16px/1.5 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+    background:
+      radial-gradient(500px 320px at 10% 0%, rgba(124, 92, 255, .2), transparent 70%),
+      radial-gradient(480px 320px at 100% 100%, rgba(255, 77, 141, .18), transparent 70%),
+      var(--bg);
+    -webkit-font-smoothing: antialiased;
+  }
+  .card { width: 100%; max-width: 400px; padding: 34px 28px 28px; background: var(--card); border: 1px solid var(--line); border-radius: 26px; text-align: center; box-shadow: 0 20px 50px rgba(23, 19, 31, .1); }
+  .tile { position: relative; width: 68px; height: 68px; margin: 0 auto 20px; display: grid; place-items: center; border-radius: 22px; background: linear-gradient(120deg, #7c5cff, #ff4d8d 55%, #ff8a3d); color: #fff; font-weight: 800; font-size: 28px; box-shadow: 0 12px 28px rgba(255, 77, 141, .35); }
+  .tile::after { content: ""; position: absolute; right: -4px; bottom: -4px; width: 18px; height: 18px; border-radius: 50%; background: #a7a1b4; border: 4px solid var(--card); }
+  h1 { margin: 0 0 8px; font-size: 22px; font-weight: 800; letter-spacing: -.01em; }
+  p { margin: 0; color: var(--muted); }
+  .host { display: inline-block; margin-top: 20px; padding: 6px 12px; border-radius: 999px; background: var(--bg); border: 1px solid var(--line); color: var(--muted); font: 13px/1.4 ui-monospace, "SF Mono", Menlo, monospace; word-break: break-all; }
+  .foot { margin-top: 18px; font-size: 13px; font-weight: 700; color: var(--muted); }
+</style>
+</head>
+<body>
+  <main class="card">
+    <div class="tile">{{initial}}</div>
+    <h1>{{name}} is {{title}}</h1>
+    <p>{{message}}</p>
+    <div class="host">{{host}}</div>
+    <div class="foot">Served by Tunl</div>
+  </main>
+</body>
+</html>

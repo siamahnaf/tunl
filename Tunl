@@ -1,0 +1,25 @@
+#!/bin/sh
+#Resolve Link
+SELF="$0"
+while [ -L "$SELF" ]; do
+  LINK="$(readlink "$SELF")"
+  case "$LINK" in
+    /*) SELF="$LINK" ;;
+    *) SELF="$(dirname "$SELF")/$LINK" ;;
+  esac
+done
+ROOT="$(cd "$(dirname "$SELF")" && pwd -P)"
+
+#Sandbox
+export TMPDIR="$ROOT/.cache/tmp/"
+export XDG_CACHE_HOME="$ROOT/.cache"
+unset NODE_COMPILE_CACHE
+mkdir -p "$TMPDIR"
+
+#Node
+if ! command -v node >/dev/null 2>&1; then
+  echo "Tunl needs Node.js 22 or newer: https://nodejs.org"
+  exit 1
+fi
+
+exec node "$ROOT/app/main.js" "$@"
